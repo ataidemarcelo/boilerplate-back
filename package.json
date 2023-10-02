@@ -1,0 +1,12 @@
+{
+  "name": "boilerplate-back-04",
+  "version": "1.0.0",
+  "description": "Este é rascunho para um boilerplate de Backend com NodeJs, Express, Sequelize, MySQL...",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
