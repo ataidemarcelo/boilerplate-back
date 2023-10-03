@@ -8,7 +8,9 @@
     "start": "node ./build/src/server.js",
     "dev": "tsnd ./src/server.ts",
     "lint": "eslint -c .eslintrc.json . --ext .js,.jsx,.ts,.tsx",
-    "test": "jest",
+    "test": "jest --passWithNoTests --noStackTrace --runInBand",
+    "test:staged": "npm test -- --findRelatedTests --silent",
+    "test:ci": "npm test -- --coverage --silent",
     "prepare": "husky install"
   },
   "keywords": [],
