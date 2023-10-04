@@ -1,7 +1,5 @@
-export function sayHello (name: string): string {
-  return `Hello, ${name}`;
-}
+import App from './App';
 
-export function sayGoodBye (name: string): string {
-  return `GoodBye, ${name}`;
-}
+const PORT = (process.env.APP_PORT != null) || 3001;
+
+new App().start(Number(PORT));
