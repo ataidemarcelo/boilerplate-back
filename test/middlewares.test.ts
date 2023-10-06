@@ -19,4 +19,23 @@ describe('Integration Tests', () => {
       expect(allowedMethods).toEqual(expect.arrayContaining(['GET', 'POST', 'DELETE', 'OPTIONS', 'PUT', 'PATCH']));
     });
   });
+
+  describe('EXPRESS JSON Middleware', () => {
+    it('should return 413 when JSON body is too large', async () => {
+      const largeObject = {} as any;
+      for (let i = 0; i < 1200; i++) {
+        largeObject[i] = 'a';
+      }
+
+      app.post('/test_json', (req, res) => {
+        res.status(200).json({ message: req.body.message });
+      });
+
+      const response = await request(app)
+        .post('/test_json')
+        .send(largeObject);
+
+      expect(response.status).toEqual(413);
+    });
+  });
 });
