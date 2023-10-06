@@ -38,4 +38,19 @@ describe('Integration Tests', () => {
       expect(response.status).toEqual(413);
     });
   });
+
+  describe('HELMET Middleware', () => {
+    it('should check helmet settings', async () => {
+      app.get('/', (req, res) => {
+        res.status(200).end();
+      });
+
+      const response = await request(app).get('/');
+
+      expect(response.headers).not.toHaveProperty('x-powered-by');
+      expect(response.headers).toHaveProperty('x-xss-protection');
+      expect(response.headers).toHaveProperty('content-security-policy');
+      expect(response.headers['x-dns-prefetch-control']).toBe('off');
+    });
+  });
 });
