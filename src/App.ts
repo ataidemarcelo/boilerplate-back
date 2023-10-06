@@ -1,4 +1,6 @@
 import express from 'express';
+import morgan from 'morgan';
+
 import routers from './routes/routers';
 
 import { getCors } from './middlewares/middlewares';
@@ -8,6 +10,7 @@ class App {
 
   constructor () {
     this.app = express();
+    this.app.use(morgan('dev'));
 
     this.app.use(getCors);
     this.app.use(express.json({ limit: '1kb' }));
