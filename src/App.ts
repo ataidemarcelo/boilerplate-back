@@ -1,4 +1,5 @@
 import express from 'express';
+import routers from './routes/routers';
 
 class App {
   public app: express.Express;
@@ -6,7 +7,7 @@ class App {
   constructor () {
     this.app = express();
 
-    this.app.get('/status', (_req, res) => res.status(200).send('(HEALTH) - API no ar!!!'));
+    this.app.use(routers);
   }
 
   public start (PORT: string | number): void {
