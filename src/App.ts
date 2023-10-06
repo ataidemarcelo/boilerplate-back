@@ -10,6 +10,8 @@ class App {
     this.app = express();
 
     this.app.use(getCors);
+    this.app.use(express.json({ limit: '1kb' }));
+
     this.app.use(routers);
   }
 }
