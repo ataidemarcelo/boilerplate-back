@@ -9,10 +9,10 @@ class App {
 
     this.app.use(routers);
   }
-
-  public start (PORT: string | number): void {
-    this.app.listen(PORT, () => { console.log(`API running at port ${PORT}`); });
-  }
 }
 
-export default App;
+const AppInstance = new App();
+
+export const { app } = AppInstance;
+
+export default AppInstance;
