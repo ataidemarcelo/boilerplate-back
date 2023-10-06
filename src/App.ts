@@ -1,12 +1,15 @@
 import express from 'express';
 import routers from './routes/routers';
 
+import { getCors } from './middlewares/middlewares';
+
 class App {
   public app: express.Express;
 
   constructor () {
     this.app = express();
 
+    this.app.use(getCors);
     this.app.use(routers);
   }
 }
