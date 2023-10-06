@@ -1,7 +1,6 @@
-export function sayHello (name: string): string {
-  return `Hello, ${name}`;
-}
+import 'dotenv/config';
+import AppInstance from './App';
 
-export function sayGoodBye (name: string): string {
-  return `GoodBye, ${name}`;
-}
+const PORT = process.env.API_PORT ?? 3001;
+
+AppInstance.app.listen(Number(PORT), () => { console.log(`API running at port ${PORT}`); });
