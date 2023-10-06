@@ -3,7 +3,7 @@ import morgan from 'morgan';
 
 import routers from './routes/routers';
 
-import { getCors } from './middlewares/middlewares';
+import { getCors, getHelmet } from './middlewares/middlewares';
 
 class App {
   public app: express.Express;
@@ -13,6 +13,7 @@ class App {
     this.app.use(morgan('dev'));
 
     this.app.use(getCors);
+    this.app.use(getHelmet());
     this.app.use(express.json({ limit: '1kb' }));
 
     this.app.use(routers);

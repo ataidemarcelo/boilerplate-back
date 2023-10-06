@@ -1,4 +1,5 @@
 import type * as express from 'express';
+import helmet from 'helmet';
 
 const getCors: express.RequestHandler = (_req, res, next) => {
   res.header('Access-Control-Allow-Origin', '*');
@@ -8,6 +9,11 @@ const getCors: express.RequestHandler = (_req, res, next) => {
   next();
 };
 
+const getHelmet = (): express.RequestHandler => {
+  return helmet();
+};
+
 export {
-  getCors
+  getCors,
+  getHelmet
 };
