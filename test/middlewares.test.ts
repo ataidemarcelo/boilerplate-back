@@ -1,6 +1,14 @@
 import request from 'supertest';
 
 import { app } from '../src/App';
+import { getLimiter } from '../src/middlewares/middlewares';
+
+const rateLimit = {
+  timeRequests: 60 * 1000,
+  maxRequests: 5
+};
+
+const URLPath = '/test_rate_limit';
 
 describe('Integration Tests', () => {
   describe('CORS Middleware', () => {
@@ -51,6 +59,25 @@ describe('Integration Tests', () => {
       expect(response.headers).toHaveProperty('x-xss-protection');
       expect(response.headers).toHaveProperty('content-security-policy');
       expect(response.headers['x-dns-prefetch-control']).toBe('off');
+    });
+  });
+
+  describe('RATE LIMITER Middleware', () => {
+    it('should return 429 an error if it exceeds the limit', async () => {
+      app.use(getLimiter(rateLimit.timeRequests, rateLimit.maxRequests));
+      app.get(URLPath, (_req, res) => {
+        res.send();
+      });
+
+      for (let i = 0; i < rateLimit.maxRequests; i++) {
+        const res = await request(app).get('/test_rate_limit');
+        expect(res.status).toEqual(200);
+      }
+
+      const response = await request(app)
+        .get(URLPath);
+
+      expect(response.status).toBe(429);
     });
   });
 });
