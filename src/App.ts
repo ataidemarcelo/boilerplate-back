@@ -20,11 +20,11 @@ class App {
   }
 
   private setupMiddlewares (): void {
+    this.app.use(morgan('dev'));
     this.app.use(getCors);
     this.app.use(getLimiter(rateLimit.timeRequests, rateLimit.maxRequests));
     this.app.use(getHelmet());
     this.app.use(express.json({ limit: '1kb' }));
-    this.app.use(morgan('dev'));
 
     this.app.use(routers);
   }
