@@ -11,7 +11,8 @@
     "test": "jest --passWithNoTests --noStackTrace --runInBand",
     "test:staged": "npm test -- --findRelatedTests --silent",
     "test:ci": "npm test -- --coverage --silent",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "db:reset": "npx -y tsc && npx sequelize-cli db:drop && npx sequelize-cli db:create"
   },
   "keywords": [],
   "author": "",
