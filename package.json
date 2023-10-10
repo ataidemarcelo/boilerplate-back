@@ -9,9 +9,10 @@
     "dev": "tsnd ./src/server.ts",
     "lint": "eslint -c .eslintrc.json . --ext .js,.jsx,.ts,.tsx",
     "test": "jest --passWithNoTests --noStackTrace --runInBand",
+    "test:verbose": "jest --passWithNoTests --runInBand",
     "test:unit": "npm test -- --watch -c jest-unit-config.ts",
     "test:integration": "npm test -- --watch --no-coverage -c jest-integration-config.ts",
-    "test:staged": "npm test -- --findRelatedTests ./src/** --silent",
+    "test:staged": "npm test -- --silent",
     "test:ci": "npm test -- --coverage --silent",
     "prepare": "husky install",
     "db:reset": "npx -y tsc && npx sequelize-cli db:drop && npx sequelize-cli db:create"
