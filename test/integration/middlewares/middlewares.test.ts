@@ -1,7 +1,7 @@
 import request from 'supertest';
 
-import { app } from '../src/App';
-import { getLimiter } from '../src/middlewares/middlewares';
+import { app } from '../../../src/App';
+import { getLimiter } from '../../../src/middlewares/middlewares';
 
 const rateLimit = {
   timeRequests: 60 * 1000,
