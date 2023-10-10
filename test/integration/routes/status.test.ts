@@ -1,6 +1,6 @@
 import request from 'supertest';
 
-import { app } from '../src/App';
+import { app } from '../../../src/App';
 
 describe('Intergration Tests', () => {
   describe('GET /status', () => {
