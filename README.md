@@ -2,9 +2,19 @@
 
 > :warning: **Nota Importante:** Este boilerplate foi desenvolvido com foco na **prática e aprimoramento profissional**. Ele não é um projeto convencional e foi criado para servir como uma base educativa e de referência. Utilize com discernimento.
 
+## Objetivos Pessoais com este Repositório:
+
+- Praticar a criação de um Projeto com o "Github Projects".
+- Amadurecer ententidimento sobre "Gerenciamento de Projetos".
+- Utilizar o ChatGPT na criação de uma documentação consistente.
+- Ter um boilerplate de referência.
+- Prática e aprimoramento de conteúdos estudados.
+
+#### Implementação:
+
 ## Descrição
 
-O projeto "Boilerplate Backend" é uma base de código inicial para acelerar o desenvolvimento de aplicações backend, aplicando as melhores práticas de programação e incluindo um conjunto fundamental de ferramentas e tecnologias para aplicações NodeJS.
+O projeto "Boilerplate Backend" é uma base de código inicial para acelerar o desenvolvimento de aplicações backend, aplicando as boas práticas de programação e incluindo um conjunto de ferramentas e tecnologias para aplicações NodeJS.
 
 <details>
 
@@ -14,12 +24,12 @@ Este projeto nasceu da necessidade de praticar e aprimorar habilidades profissio
 
 ## Declaração do Problema
 
-Iniciar um novo projeto do zero pode ser demorado e oneroso. Este boilerplate procura abordar este desafio fornecendo uma solução inicial que visa a qualidade, segurança e eficiência desde o início.
+Iniciar um novo projeto do zero pode ser demorado e oneroso. Este boilerplate procura abordar este desafio fornecendo uma solução inicial que visa a qualidade, segurança e documentação desde o início.
 
 ## Objetivos
 
 - Desenvolver um boilerplate reutilizável para backend, priorizando boas práticas.
-- Servir como uma base inicial para gerenciamento de projetos.
+- Servir como uma base inicial para criação e Gerenciamento de Projetos Backend.
 
 ## Resultados Esperados
 
@@ -34,7 +44,7 @@ Iniciar um novo projeto do zero pode ser demorado e oneroso. Este boilerplate pr
 
 ## Restrições
 
-Este projeto foi construído utilizando as seguintes tecnologias:
+Este projeto foi construído utilizando como principais tecnologias:
 - NodeJS
 - Express
 - Sequelize
@@ -45,8 +55,8 @@ Este projeto foi construído utilizando as seguintes tecnologias:
 ### Requisitos
 
 - Facilidade de instalação e configuração.
-- Adesão às melhores práticas de programação, como padrões de projeto, POO e SOLID.
-- Testes automatizados via Jest.
+- Adesão às melhores práticas de programação.
+- Testes automatizados.
 - Documentação clara e abrangente.
 
 ### Tecnologias e Ferramentas
@@ -61,46 +71,109 @@ Este projeto foi construído utilizando as seguintes tecnologias:
 ### Cronograma
 
 - **Semana 1:** Planejamento e definição do projeto.
-- **Semana 1-2:** Desenvolvimento, testes e refatoração.
-- **Semana 3:** Desenvolvimento de uma API RESTful simples para gerenciamento de usuários.
+- **Semana 1-2:** Desenvolvimento da configuração básicas, testes e refatoração.
+- **Semana 3-4:** Desenvolvimento de uma API RESTful simples para cadastrar usuários.
+- **Semana 4-5:** Autenticação e Autorização.
+- **Semana 5:** Desenvolvimento de uma estrutura básica para CI/CD.
+
+> **Obs:** Ter um cronograma exercita uma consciência do "todo", já no início do projeto.
 </details>
 
-### Instalar e rodar o projeto
+---
+## Instalar e rodar o projeto
 
-Rodar o Boilerplate em sua máquina local é uma tarefa extremamente simples.
+Rodar o Boilerplate em sua máquina local é uma tarefa simples.
 
 ### Dependências globais
 Você precisa ter duas principais dependências instaladas:
 
-- Node.js LTS v16 (ou qualquer versão superior)
-- Docker Engine v17.12.0 com Docker Compose v1.24.1 (ou qualquer versão superior)s
+- Node.js LTS v18 (ou qualquer versão superior)
+- Docker Engine com Docker Compose
 
 ### Depêndencias locais
 
 Então após baixar o repositório, não se esqueça de instalar as dependências locais do projeto:
 
 ```bash
+# instalar as dependências
 npm install
 ```
 ### Rodar o projeto
 
-Para rodar o projeto localmente, basta rodar o comando abaixo:
+Para rodar o projeto localmente, basta rodar os comandos abaixo:
 
 ```bash
+# Levantar o container do Docker com a imagem do Mysql
+docker-compose up -d
+
+# criar o Banco de dados "db-api"
+npm run db:init
+
+# Levantar a API em modo de desenvolvimento
 npm run dev
 ```
 
 > Observações:
-> ...
+> Você consegue ver o status da API em: http://localhost:3001/status
+
+### Comandos para o build
+```bash
+# apaga a pasta build se existir, e recria, fazendo a transpilação
+npm run build
+# roda a aplicação depois de transpilada
+npm start
+```
 
 ### Rodar os testes
-### Criar as Migrations
-### Commit das alterações
-
-Após finalizar suas alterações e se certificar que todos os testes estão passando com o comando geral npm test, chegou a hora de fazer o commit das suas alterações.
-
-Para ser auxiliado no padrão de commit que utilizamos, rode o comando abaixo e siga as instruções:
-
 ```bash
-npm run commit
+# roda todos os testes
+npm run:test
+
+# roda todos os testes com os logs ativados
+npm run test:verbose
+
+# roda somente os testes que estão sendo modificados, de forma assistida
+# útil para desenvolvimento
+npm run test:watch
+
+# roda os testes de unidade (com extenção .spec.ts)
+npm run test:unit
+
+# roda os testes de integração (com extenção .test.ts)
+npm run test:integration
+
+# Comandos usados pela aplicação:
+# usado pelo script do husky "pre-commit" com o lint-staged
+# roda a cada commit, comando em .lintstagedrc.json
+npm run test:staged
+
+# usado pelo script do husky "pre-push"
+# roda ao fazer o push
+npm run test:ci
 ```
+
+### Comandos para o banco de dados:
+```bash
+# criar o Banco de dados "db-api"
+npm run db:init
+
+# Obs: apóis criar suas migrations e seeders, você pode usar estes comandos abaixo
+# resetar o Banco de dados
+# roda a sequelize-cli fazendo um drop | create | migrate | seed do DB
+npm run db:reset
+
+# Se precisar apenas reverter as migrations e os seeders
+npx sequelize db:undo:all
+
+# para rodar separadamente as migrations ou os seeders
+npm run db:migrate
+npm run db:seed:all
+```
+
+### O que foi praticado:
+
+- Gerenciamento do projeto com o "Github Projects".
+- Divisão dos tarefas em: Milestones | Issues | Tasks.
+- Criação de Templates para abertura das Issues.
+- Documentação de cada Issue e PR.
+- Criação de Tags e utilização da técnica "**M**o**SC**o**W**" para o processo de priorização.
