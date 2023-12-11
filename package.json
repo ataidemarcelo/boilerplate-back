@@ -6,9 +6,9 @@
   "scripts": {
     "build": "rimraf build && tsc -b ./tsconfig.build.json",
     "start": "node ./build/src/server.js",
-    "dev": "tsnd ./src/server.ts",
+    "dev": "NODE_ENV=development tsnd ./src/server.ts",
     "lint": "eslint -c .eslintrc.json . --ext .js,.jsx,.ts,.tsx",
-    "test": "jest --passWithNoTests --noStackTrace --runInBand",
+    "test": "NODE_ENV=test jest --passWithNoTests --noStackTrace --runInBand",
     "test:verbose": "jest --passWithNoTests --runInBand",
     "test:watch": "npm test -- --watch --no-coverage",
     "test:unit": "npm test -- --no-coverage -c jest-unit-config.ts",
