@@ -6,7 +6,7 @@
 
 - Praticar a criação de um Projeto com o "Github Projects".
 - Amadurecer ententidimento sobre "Gerenciamento de Projetos".
-- Utilizar o ChatGPT na criação de uma documentação consistente.
+- Utilizar o ChatGPT na criação de uma documentação.
 - Ter um boilerplate de referência.
 - Prática e aprimoramento de conteúdos estudados.
 
@@ -176,4 +176,5 @@ npm run db:seed:all
 - Divisão dos tarefas em: Milestones | Issues | Tasks.
 - Criação de Templates para abertura das Issues.
 - Documentação de cada Issue e PR.
-- Criação de Tags e utilização da técnica "**M**o**SC**o**W**" para o processo de priorização.
+- Criação de Labels.
+- Utilização da técnica "**M**o**SC**o**W**" para o processo de priorização.
