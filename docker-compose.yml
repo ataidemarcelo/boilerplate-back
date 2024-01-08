@@ -1,6 +1,5 @@
 version: '3'
 services:
-
   db:
     image: mysql:8.0.23
     container_name: db
@@ -10,3 +9,4 @@ services:
       - ./db/data/:/var/lib/mysql
     environment:
       - MYSQL_ROOT_PASSWORD=secret
+      - MYSQL_DATABASES=db-api
